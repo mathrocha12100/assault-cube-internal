@@ -1,1 +1,1 @@
-# assaultcube-external-cheat
+# assaultcube-internal-cheat
