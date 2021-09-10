@@ -16,6 +16,27 @@
     <Filter Include="mem">
       <UniqueIdentifier>{eacb82f1-209b-4e59-bcb4-626955f71a4b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="hook">
+      <UniqueIdentifier>{4b9a0835-2d7c-4bd3-9d72-3ab064d9426a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OpenGL Draw">
+      <UniqueIdentifier>{490bfa18-7560-4b60-948c-d55c96305a16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OpenGL Text">
+      <UniqueIdentifier>{b009140a-ed9f-4977-af11-9eb3ef3344c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssaultCube">
+      <UniqueIdentifier>{460f23b8-f3c0-41b7-af9e-924880863551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Esp">
+      <UniqueIdentifier>{56f5df62-fc93-4924-886e-a26667dcb0e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="geom">
+      <UniqueIdentifier>{4f1086b9-608f-4cf4-812b-0c91b860c8fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="console">
+      <UniqueIdentifier>{411a6502-8bfa-4cb8-ac57-451c46a0eb48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -27,16 +48,58 @@
     <ClInclude Include="mem.h">
       <Filter>mem</Filter>
     </ClInclude>
+    <ClInclude Include="hook.h">
+      <Filter>hook</Filter>
+    </ClInclude>
+    <ClInclude Include="glDraw.h">
+      <Filter>OpenGL Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="glText.h">
+      <Filter>OpenGL Text</Filter>
+    </ClInclude>
+    <ClInclude Include="assaultCube.h">
+      <Filter>AssaultCube</Filter>
+    </ClInclude>
+    <ClInclude Include="esp.h">
+      <Filter>Esp</Filter>
+    </ClInclude>
+    <ClInclude Include="geom.h">
+      <Filter>geom</Filter>
+    </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>console</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mem.cpp">
       <Filter>mem</Filter>
+    </ClCompile>
+    <ClCompile Include="hook.cpp">
+      <Filter>hook</Filter>
+    </ClCompile>
+    <ClCompile Include="glDraw.cpp">
+      <Filter>OpenGL Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="glText.cpp">
+      <Filter>OpenGL Text</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="assaultCube.cpp">
+      <Filter>AssaultCube</Filter>
+    </ClCompile>
+    <ClCompile Include="esp.cpp">
+      <Filter>Esp</Filter>
+    </ClCompile>
+    <ClCompile Include="geom.cpp">
+      <Filter>geom</Filter>
+    </ClCompile>
+    <ClCompile Include="console.cpp">
+      <Filter>console</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

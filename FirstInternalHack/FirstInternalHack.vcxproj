@@ -151,12 +151,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="assaultCube.h" />
+    <ClInclude Include="console.h" />
+    <ClInclude Include="esp.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="geom.h" />
+    <ClInclude Include="glDraw.h" />
+    <ClInclude Include="glText.h" />
+    <ClInclude Include="hook.h" />
     <ClInclude Include="mem.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="assaultCube.cpp" />
+    <ClCompile Include="console.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="esp.cpp" />
+    <ClCompile Include="geom.cpp" />
+    <ClCompile Include="glDraw.cpp" />
+    <ClCompile Include="glText.cpp" />
+    <ClCompile Include="hook.cpp" />
     <ClCompile Include="mem.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
