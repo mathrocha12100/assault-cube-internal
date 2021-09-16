@@ -30,7 +30,8 @@ void console::DrawInConsole(
     bool bAmmo,
     bool bRecoil,
     bool espActive,
-    bool espLifebar
+    bool espLifebar,
+    bool bTriggerbot
 ) {
     ClearConsole();
 
@@ -41,5 +42,6 @@ void console::DrawInConsole(
     std::cout << "[ 3 ] - No Recoil" << DrawCheckbox(bRecoil) << std::endl;
     std::cout << "[ 4 ] - ESP" << DrawCheckbox(espActive) << std::endl;
     std::cout << "[ 5 ] - Barra de Vida (Só aparece com esp ativo)" << DrawCheckbox(espLifebar) << std::endl;
+    std::cout << "[ 6 ] - Triggerbot" << DrawCheckbox(bTriggerbot) << std::endl;
     std::cout << "----- xxxxxxxxxdxxxx -----";
 }

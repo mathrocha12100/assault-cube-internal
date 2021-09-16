@@ -13,7 +13,8 @@ namespace console {
         bool bAmmo,
         bool bRecoil,
         bool espActive,
-        bool espLifebar
+        bool espLifebar,
+        bool bTriggerbot
     );
 }
 

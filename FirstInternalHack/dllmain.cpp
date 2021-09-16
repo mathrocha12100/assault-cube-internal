@@ -11,6 +11,10 @@
 #include "esp.h"
 #include "console.h"
 
+typedef ent* (__cdecl* tGetCrossHairEnt)();
+
+tGetCrossHairEnt GetCrossHairEnt = nullptr;
+
 typedef BOOL(__stdcall* twglSwapBuffers) (HDC hDc);
 
 twglSwapBuffers wglSwapBuffersGateway;
@@ -21,9 +25,10 @@ const int FONT_HEIGHT = 15;
 const int FONT_WIDTH = 9;
 
 bool canEject = false;
-bool bHealth = false, bAmmo = false, bRecoil = false, espActive = false, espLifebar = false;
+bool bHealth = false, bAmmo = false, bRecoil = false, espActive = false, espLifebar = false, bTriggerbot = false;
 
 uintptr_t moduleBase = (uintptr_t)GetModuleHandle(L"ac_client.exe");
+
 
 ESP esp;
 
@@ -43,6 +48,10 @@ void Draw()
 
 
 void HackFeatures() {
+
+    if (GetAsyncKeyState(VK_NUMPAD6) & 1) {
+        bTriggerbot = !bTriggerbot;
+    }
     
     if (GetAsyncKeyState(VK_NUMPAD0) & 1) {
         canEject = true;
@@ -50,13 +59,13 @@ void HackFeatures() {
 
     if (GetAsyncKeyState(VK_NUMPAD1) & 1) {
         bHealth = !bHealth;
-        console::DrawInConsole(bHealth, bAmmo, bRecoil, espActive, espLifebar);
+        console::DrawInConsole(bHealth, bAmmo, bRecoil, espActive, espLifebar, bTriggerbot);
 
     }
 
     if (GetAsyncKeyState(VK_NUMPAD2) & 1) {
         bAmmo = !bAmmo;
-        console::DrawInConsole(bHealth, bAmmo, bRecoil, espActive, espLifebar);
+        console::DrawInConsole(bHealth, bAmmo, bRecoil, espActive, espLifebar, bTriggerbot);
 
     }
 
@@ -72,7 +81,7 @@ void HackFeatures() {
             mem::Patch((BYTE*)(moduleBase + 0x63786), (BYTE*)"\x50\x8d\x4c\x24\x1c\x51\x8b\xce\xff\xd2", 10);
         }
 
-        console::DrawInConsole(bHealth, bAmmo, bRecoil, espActive, espLifebar);
+        console::DrawInConsole(bHealth, bAmmo, bRecoil, espActive, espLifebar, bTriggerbot);
 
     }
 
@@ -84,15 +93,34 @@ void HackFeatures() {
         else {
             espLifebar = true;
         }
-        console::DrawInConsole(bHealth, bAmmo, bRecoil, espActive, espLifebar);
+        console::DrawInConsole(bHealth, bAmmo, bRecoil, espActive, espLifebar, bTriggerbot);
     }
 
     if (GetAsyncKeyState(VK_NUMPAD5) & 1) {
         espLifebar = !espLifebar;
-        console::DrawInConsole(bHealth, bAmmo, bRecoil, espActive, espLifebar);
+        console::DrawInConsole(bHealth, bAmmo, bRecoil, espActive, espLifebar, bTriggerbot);
     }
 
     uintptr_t* localPlayerPtr = (uintptr_t*)(moduleBase + 0x10f4f4);
+    
+    ent* playerPtr = *(ent**)(moduleBase + 0x10F4F4);
+
+    if (playerPtr) {
+        if (bTriggerbot) {
+            ent* crosshairEnt = GetCrossHairEnt();
+
+            if (crosshairEnt) {
+                if (playerPtr->team != crosshairEnt->team) {
+                    playerPtr->bAttacking = 1; 
+                }
+            }
+            else {
+                playerPtr->bAttacking = 0;
+            }
+
+        }
+    }
+
 
     if (localPlayerPtr) {
         if (bHealth) {
@@ -141,7 +169,9 @@ DWORD WINAPI HackThread(HMODULE hModule) {
     FILE* f;
     freopen_s(&f, "CONOUT$", "w", stdout);
 
-    console::DrawInConsole(bHealth, bAmmo, bRecoil, espActive, espLifebar);
+    GetCrossHairEnt = (tGetCrossHairEnt)(moduleBase + 0x607c0);
+
+    console::DrawInConsole(bHealth, bAmmo, bRecoil, espActive, espLifebar, bTriggerbot);
 
     //Get Module base
     Hook SwapBuffersHook("wglSwapBuffers", "opengl32.dll", (BYTE*)hkwglSwapBuffers, (BYTE*)&wglSwapBuffersGateway, 5);

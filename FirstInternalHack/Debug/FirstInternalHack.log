@@ -1,0 +1,13 @@
+﻿  pch.cpp
+  assaultCube.cpp
+  console.cpp
+  dllmain.cpp
+  esp.cpp
+C:\Users\Matheus\source\repos\Firs tInternal Hack\FirstInternalHack\esp.cpp(78,58): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
+  geom.cpp
+  glDraw.cpp
+  glText.cpp
+  hook.cpp
+  mem.cpp
+  Generating Code...
+  FirstInternalHack.vcxproj -> C:\Users\Matheus\source\repos\Firs tInternal Hack\Debug\FirstInternalHack.dll
